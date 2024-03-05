@@ -26,15 +26,33 @@ class UserController extends Controller
         // // coba akses model UserModel
         // $user = m_user::all(); // ambil semua data dari tabel m_users
         // return view('user', ['data' => $user]);
-        $data = [
-            'level_id' => 2,
-            'username' => 'manager_tiga',
-            'nama' => 'Manager 3',
-            'password' => Hash::make('12345'),
-        ];
-        m_user::create($data);
+        // $data = [
+        //     'level_id' => 2,
+        //     'username' => 'manager_tiga',
+        //     'nama' => 'Manager 3',
+        //     'password' => Hash::make('12345'),
+        // ];
+        // m_user::create($data);
 
-        $user = m_user::all();
-        return view('user',['data'=>$user]);
+        // $user = m_user::all();
+        // return view('user',['data'=>$user]);
+
+        // $user = m_user::find(1);
+        // return view('user',['data'=>$user]);
+
+        // $user = m_user::where('level_id', 1)->first();
+        // return view('user', ['data' => $user]);
+
+        // $user = m_user::firstwhere('level_id', 1);
+        // return view('user', ['data' => $user]);
+
+        // $user = m_user::findor(1, ['username', 'nama'], function () {
+        //     abort(404);
+        // });
+        // return view('user', ['data' => $user]);
+        $user = m_user::findor(20, ['username', 'nama'], function () {
+            abort(404);
+        });
+        return view('user', ['data' => $user]);
     }
 }
