@@ -50,9 +50,14 @@ class UserController extends Controller
         //     abort(404);
         // });
         // return view('user', ['data' => $user]);
-        $user = m_user::findor(20, ['username', 'nama'], function () {
-            abort(404);
-        });
+        // $user = m_user::findor(20, ['username', 'nama'], function () {
+        //     abort(404);
+        // });
+        // return view('user', ['data' => $user]);
+
+        // $user = m_user::findorfail(1);
+        // return view('user', ['data' => $user]);
+        $user = m_user::where('username', 'manager9')->firstorfail();
         return view('user', ['data' => $user]);
     }
 }
