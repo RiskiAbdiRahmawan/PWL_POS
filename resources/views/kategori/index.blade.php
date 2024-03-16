@@ -11,6 +11,7 @@
         <div class="card">
             <div class="carh-header">Manage Kategori</div>
             <div class="card-body">
+                <a href="{{route('/kategori/create')}}" class="btn btn-primary mb-3">Add</a>
                 {{$dataTable->table()}}
             </div>
         </div>
