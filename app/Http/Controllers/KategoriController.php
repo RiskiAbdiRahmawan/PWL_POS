@@ -32,14 +32,32 @@ class KategoriController extends Controller
     {
         return $dataTable->render('kategori.index');
     }
-    public function create(){
+    public function create()
+    {
         return view('kategori.create');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         m_kategori::create([
-            'kategori_kode' =>$request->kodeKategori,
-            'kategori_nama' =>$request->namaKategori,
+            'kategori_kode' => $request->kodeKategori,
+            'kategori_nama' => $request->namaKategori,
         ]);
+        return redirect('/kategori');
+    }
+    public function edit($id)
+    {
+        $user = m_kategori::find($id);
+        return view('kategori/edit', ['data' => $user]);
+    }
+    public function edit_save($id, Request $request)
+    {
+        $kategori = m_kategori::find($id);
+
+        $kategori->kategori_kode = $request->kodeKategori;
+        $kategori->kategori_nama = $request->namaKategori;
+
+        $kategori->save();
+
         return redirect('/kategori');
     }
 }

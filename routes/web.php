@@ -25,11 +25,15 @@ Route::get('/user', [UserController::class, 'index'])->name('/user');
 Route::get('/user/tambah', [UserController::class, 'tambah'])->name('/user/tambah');
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah'])->name('/user/ubah');
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('/user/hapus');
-Route::post('/user/tambah_simpan',[UserController::class,'tambah_simpan'])->name('/user/tambah_simpan');
-Route::put('/user/ubah_simpan/{id}',[UserController::class,'ubah_simpan'])->name('/user/ubah_simpan');
+Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan'])->name('/user/tambah_simpan');
+Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->name('/user/ubah_simpan');
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/kategori/create',[KategoriController::class,'create'])->name('/kategori/create');
-Route::post('/kategori',[KategoriController::class,'store'])->name('/kategori');
+Route::get('/kategori/create', [KategoriController::class, 'create'])->name('/kategori/create');
+Route::post('/kategori', [KategoriController::class, 'store'])->name('/kategori');
+// Route::get('/kategori/edit/{$id}',[KategoriController::class,'edit'])->name('/kategori/edit');
+// Route::put('/kategori/edit_save/{$id}',[KategoriController::class,'edit_save']);
+Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+Route::put('/kategori/edit_save/{id}', [KategoriController::class, 'edit_save'])->name('kategori.update');
