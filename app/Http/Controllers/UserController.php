@@ -192,4 +192,12 @@ class UserController extends Controller
 
         return redirect('/user');
     }
+    public function create()
+    {
+        return view('user.create');
+    }
+    public function update()
+    {
+        return view('user.edit');
+    }
 }

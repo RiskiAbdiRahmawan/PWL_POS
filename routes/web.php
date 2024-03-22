@@ -38,3 +38,7 @@ Route::post('/kategori', [KategoriController::class, 'store'])->name('/kategori'
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::put('/kategori/edit_save/{id}', [KategoriController::class, 'edit_save'])->name('kategori.update');
 Route::get('/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('/kategori/hapus');
+Route::get('/level/create', [LevelController::class, 'create'])->name('/level/create');
+Route::get('/level/update', [LevelController::class, 'update'])->name('/level/update');
+Route::get('/user/create', [UserController::class, 'create'])->name('/user/create');
+Route::get('/user/update', [UserController::class, 'update'])->name('/user/update');
