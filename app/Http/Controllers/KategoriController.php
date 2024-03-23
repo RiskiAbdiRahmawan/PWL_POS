@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use App\DataTables\KategoriDataTable;
 use App\Models\m_kategori;
 use Illuminate\Http\Request;
@@ -36,14 +37,32 @@ class KategoriController extends Controller
     {
         return view('kategori.create');
     }
-    public function store(Request $request)
+    // public function store(Request $request)
+    // {
+    //     m_kategori::create([
+    //         'kategori_kode' => $request->kodeKategori,
+    //         'kategori_nama' => $request->namaKategori,
+    //     ]);
+    //     return redirect('/kategori');
+    // }
+    public function store(Request $request): RedirectResponse
     {
-        m_kategori::create([
-            'kategori_kode' => $request->kodeKategori,
-            'kategori_nama' => $request->namaKategori,
+        $validated = $request->validate([
+            'kategori_kode' => 'required',
+            'kategori_nama' => 'required',
+            // 'created_at' => now()
         ]);
         return redirect('/kategori');
     }
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     $validated = $request->validate([
+    //         'kategori_kode' => 'bail|required|unique:posts|max:10',
+    //         'kategori_nama' => 'required',
+    //         // 'created_at' => now()
+    //     ]);
+    //     return redirect('/kategori');
+    // }
     public function edit($id)
     {
         $user = m_kategori::find($id);

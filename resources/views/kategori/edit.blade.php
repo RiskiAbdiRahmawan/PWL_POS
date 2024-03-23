@@ -10,7 +10,7 @@
             <div class="card-header">
                 <h3 class="card-title">Ubah Kategori</h3>
             </div>
-
+            
             <form method="POST" action="{{ route('kategori.update', $data->kategori_id) }}">
                 @csrf
                 @method('PUT')
