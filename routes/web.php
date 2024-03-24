@@ -31,8 +31,8 @@ Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->na
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/kategori/create', [KategoriController::class, 'create'])->name('/kategori/create');
-Route::post('/kategori', [KategoriController::class, 'store'])->name('/kategori');
+// Route::get('/kategori/create', [KategoriController::class, 'create'])->name('/kategori/create');
+// Route::post('/kategori', [KategoriController::class, 'store'])->name('/kategori');
 // Route::get('/kategori/edit/{$id}',[KategoriController::class,'edit'])->name('/kategori/edit');
 // Route::put('/kategori/edit_save/{$id}',[KategoriController::class,'edit_save']);
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
@@ -42,3 +42,5 @@ Route::get('/level/create', [LevelController::class, 'create'])->name('/level/cr
 Route::get('/level/update', [LevelController::class, 'update'])->name('/level/update');
 Route::get('/user/create', [UserController::class, 'create'])->name('/user/create');
 Route::get('/user/update', [UserController::class, 'update'])->name('/user/update');
+Route::get('/kategori/create', [KategoriController::class, 'create']);
+Route::post('/kategori', [KategoriController::class, 'store']);

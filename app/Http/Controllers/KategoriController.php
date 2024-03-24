@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use App\DataTables\KategoriDataTable;
 use App\Models\m_kategori;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
@@ -45,15 +46,32 @@ class KategoriController extends Controller
     //     ]);
     //     return redirect('/kategori');
     // }
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     $validated = $request->validate([
+    //         'kategori_kode' => 'required',
+    //         'kategori_nama' => 'required',
+    //         // 'created_at' => now()
+    //     ]);
+    //     return redirect('/kategori');
+    // }
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'kategori_kode' => 'required',
+            'kategori_kode' => 'bail|required',
             'kategori_nama' => 'required',
-            // 'created_at' => now()
+            // 'created_at' => 'required|date', // Validasi agar 'created_at' diisi dengan nilai tanggal yang valid
+        ]);
+
+        // Lakukan operasi penyimpanan data atau tindakan lainnya setelah validasi berhasil
+
+        m_kategori::create([
+            'kategori_kode' => $request->kategori_kode,
+            'kategori_nama' => $request->kategori_nama,
         ]);
         return redirect('/kategori');
     }
+
     // public function store(Request $request): RedirectResponse
     // {
     //     $validated = $request->validate([
