@@ -13,17 +13,36 @@
               <div class="card-header">
                 <h3 class="card-title">Buat Level Baru</h3>
               </div>
+              
+              @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="post" action="../level">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="kodeLevel">Level Kode</label>
-                    <input type="text" class="form-control" id="kodeLevel" name="kodeLevel" placeholder="Enter Level Kode">
+                    <label for="level_kode">Level Kode</label>
+                    <input type="text" class="@error('level_kode') is-invalid
+                    @enderror" id="level_kode" name="level_kode" placeholder="Enter Level Kode">
+                    @error('level_nama')
+                            <div class="alert alert-danger">{{ $message}}</div>
+                        @enderror
                   </div>
                   <div class="form-group">
-                    <label for="namaLevel">Level Nama</label>
-                    <input type="text" class="form-control" id="namaLevel" placeholder="Enter Level Nama">
+                    <label for="level_nama">Level Nama</label>
+                    <input type="text" class="@error('level_nama')
+                      is-invalid
+                    @enderror" id="level_nama" name="level_nama" placeholder="Enter Level Nama">
+                    @error('level_nama')
+                        <div class="alert alert-danger">{{ $message}}</div>
+                    @enderror
                   </div>
                 </div>
                 <!-- /.card-body -->
