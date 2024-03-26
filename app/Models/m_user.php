@@ -23,6 +23,7 @@ class m_user extends Model
     // {
     //     return $this->hasOne(m_level::class);
     // }
+
     public function level(): BelongsTo
     {
         return $this->belongsTo(m_level::class, 'level_id', 'level_id');
