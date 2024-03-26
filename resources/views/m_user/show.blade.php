@@ -1,46 +1,34 @@
 @extends('m_user/template')
+
 @section('content')
-<div class="row mt-5 mb-5">
-<div class="col-lg-12 margin-tb">
-<div class="float-left">
-<h2> Show User</h2>
-</div>
-<div class="float-right">
-<a class="btn btn-secondary" href="{{ route('m_user.index') }}">
-Kembali</a>
-</div>
-</div>
-</div>
 <div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>User_id:</strong>
-{{ $useri->user_id }}
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 50px">
+            <div class="card-header" style="background-color: rgb(249, 0, 0);">
+                <h3 class="card-title"> <i class="fas fa-text-width"></i> Show User Details</h3>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">User ID:</dt>
+                    <dd class="col-sm-8">{{ $useri->user_id }}</dd>
+                    <dt class="col-sm-4">Level ID:</dt>
+                    <dd class="col-sm-8">{{ $useri->level_id }}</dd>
+                    <dt class="col-sm-4">Username:</dt>
+                    <dd class="col-sm-8">{{ $useri->username }}</dd>
+                    <dt class="col-sm-4">Nama:</dt>
+                    <dd class="col-sm-8">{{ $useri->nama }}</dd>
+                    <dt class="col-sm-4">Password:</dt>
+                    <dd class="col-sm-8">{{ $useri->password }}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        </div>
 </div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Level_id:</strong>
-{{ $useri->level_id }}
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Username:</strong>
-{{ $useri->username }}
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Nama:</strong>
-{{ $useri->nama }}
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Password:</strong>
-{{ $useri->password }}
-</div>
-</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <a class="btn btn-warning" href="{{ route('m_user.index') }}">Kembali</a>
+    </div>
 </div>
 @endsection

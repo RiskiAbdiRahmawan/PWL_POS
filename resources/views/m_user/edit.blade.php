@@ -1,70 +1,53 @@
 @extends('m_user/template')
-@section('content')
-<div class="row mt-5 mb-5">
-<div class="col-lg-12 margin-tb">
-<div class="float-left">
-<h2>Edit User</h2>
-</div>
-<div class="float-right">
-<a class="btn btn-secondary" href="{{ route('m_user.index') }}">
-Kembali</a>
-</div>
-</div>
-</div>
-@if ($errors->any())
-<div class="alert alert-danger">
-<strong>Ops!</strong> Error <br><br>
-<ul>
-@foreach ($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-</div>
-@endif
-<form action="{{ route('m_user.update', $useri->user_id) }}"
-method="POST">
-@csrf
-@method('PUT')
-<div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>User_id:</strong>
-<input type="text" name="userid" value="{{ $useri->user_id }}"
-class="form-control" placeholder="Masukkan user id">
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Level_id:</strong>
-<input type="text" name="levelid" value="{{ $useri->level_id }}"
-class="form-control" placeholder="Masukkan level">
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Username:</strong>
-<input type="text" value= "{{ $useri->username }}" class="formcontrol" name="username" placeholder="Masukkan Nomor username"">
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>nama:</strong>
-<input type="text" value= "{{ $useri->nama }}"name="nama"
-class="form-control" placeholder="Masukkan nama"></input>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Password:</strong>
-<input type="password" value= "{{ $useri->password
-}}"name="password" class="form-control" placeholder="Masukkan 
-password"></input>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-<button type="submit" class="btn btn-primary">Update</button>
-</div>
-</div>
-</form>
-@endsection
 
+@section('content')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary" style="margin-top: 50px">
+                <div class="card-header" style="background-color: rgb(255, 0, 0)">
+                    <h3 class="card-title" style="text-align: center">Edit User</h3>
+                </div>
+                <form action="{{ route('m_user.update', $useri->user_id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="form-group">
+                            <label for="userid">User ID</label>
+                            <input type="text" class="form-control" id="userid" name="userid" value="{{ $useri->user_id }}" placeholder="Enter User ID" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="levelid">Level ID</label>
+                            <input type="text" class="form-control" id="levelid" name="levelid" value="{{ $useri->level_id }}" placeholder="Enter Level ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{ $useri->username }}" placeholder="Enter Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $useri->nama }}" placeholder="Enter Nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
