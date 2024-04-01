@@ -1,50 +1,55 @@
-@extends('adminlte::page')
-@section('title', 'Dashboard')
-@section('content_header')
-<h1>Dashboard</h1>
-@stop
-@section('content')
-<div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Ubah Level</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="kodeLevel">Level ID</label>
-                    <input type="text" class="form-control" id="kodeLevel" name="kodeLevel" value="" disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="kodeLevel">Level Kode</label>
-                    <input type="text" class="form-control" id="kodeLevel" name="kodeLevel" value="">
-                  </div>
-                  <div class="form-group">
-                    <label for="namaLevel">Level Nama</label>
-                    <input type="text" class="form-control" id="namaLevel" value="">
-                  </div>
-                </div>
-                <!-- /.card-body -->
+@extends('layouts.template')
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="submit" class="btn btn-warning">Cancel</button>
-                  <button type="submit" class="btn btn-info">Kembali</button>
+@section('content')
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{$page->title}}</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            @empty($level)
+                <div class="alert alert-danger alert-dismissible">
+                    <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
+                    Data yang Anda cari tidak ditemukan
                 </div>
-              </form>
-            </div>
-            <!-- /.card -->
-@stop
-@section('css')
-{{-- Add here extra stylesheets --}}
-{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
-@section('js')
-<script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-@stop
+                <a href="{{url('level')}}" class="btn btn-sm btn-default mt-2">Kembali</a>
+            @else
+                <form action="{{url('/level/'.$level->level_id)}}" method="POST" class="form-horizontal">
+                    @csrf
+                    {!! method_field('PUT') !!} 
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Kode Level</label>
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="level_kode" name="level_kode" value="{{old('level_kode', $level->level_kode)}}" required>
+                            @error('level_kode')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Nama Level</label>
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="level_nama" name="level_nama" value="{{old('level_nama', $level->level_nama)}}" required>
+                            @error('level_nama')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label"></label>
+                        <div class="col-11">
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            <a href="{{url('level')}}" class="btn btn-sm btn-default ml-1">Kembali</a>
+                        </div>
+                    </div>
+                </form>
+            @endempty
+        </div>
+    </div>
+@endsection
+@push('css')
+
+@endpush
+@push('js')
+
+@endpush
