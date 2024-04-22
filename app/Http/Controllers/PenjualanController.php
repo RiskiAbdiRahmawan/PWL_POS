@@ -6,6 +6,7 @@ use App\Models\m_barang;
 use App\Models\m_user;
 use App\Models\t_penjualan;
 use App\Models\t_penjualan_detail;
+use App\Models\t_stok;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -97,6 +98,10 @@ class PenjualanController extends Controller
                 'jumlah' => $request->jumlah[$key]
             ]);
         }
+
+        $stok = t_stok::find($barangId);
+        t_stok::find($barangId)->update([
+            'stok_jumlah' => ($stok->stok_jumlah - $request->jumlah[$key]),]);
 
         return redirect('/penjualan')->with('success', 'Data Penjualan berhasil disimpan');
     }

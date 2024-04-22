@@ -72,15 +72,27 @@ class StokController extends Controller
             'stok_jumlah' => 'required|integer',
             'user_id' => 'required|integer',
         ]);
-        t_stok::create([
-            'barang_id' => $request->barang_id,
-            'stok_tanggal' => $request->stok_tanggal,
-            'stok_jumlah' => $request->stok_jumlah,
-            'user_id' => $request->user_id,
-        ]);
+
+        $existingStok = t_stok::where('barang_id', $request->barang_id)->first();
+
+        if ($existingStok) {
+            // Update stok barang yang sudah ada
+            $existingStok->update([
+                'stok_jumlah' => $existingStok->stok_jumlah + $request->stok_jumlah,
+            ]);
+        } else {
+            // Buat data stok baru jika belum ada
+            t_stok::create([
+                'barang_id' => $request->barang_id,
+                'stok_tanggal' => $request->stok_tanggal,
+                'stok_jumlah' => $request->stok_jumlah,
+                'user_id' => $request->user_id,
+            ]);
+        }
 
         return redirect('/stok')->with('success', 'Data Stok berhasil disimpan');
     }
+
     public function show(string $id)
     {
         $stok = t_stok::find($id);

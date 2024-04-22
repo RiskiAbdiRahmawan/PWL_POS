@@ -25,7 +25,7 @@
                                     <option value="{{$item->barang_id}}">{{$item->barang_nama}}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-muted">Nama Kategori</small>
+                            <small class="form-text text-muted">Nama Barang</small>
                         </div>
                     </div>
                 </div>

@@ -23,9 +23,10 @@ class BarangController extends Controller
 
         $activeMenu = 'barang';
 
-        $kategori = m_user::all();
+        $kategori = m_kategori::all();
+        $barang = m_barang::all();
 
-        return view('barang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'kategori' => $kategori]);
+        return view('barang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'kategori' => $kategori, 'barang' => $barang]);
     }
     public function list(Request $request)
     {
@@ -33,6 +34,10 @@ class BarangController extends Controller
 
         if ($request->kategori_id) {
             $barangs->where('kategori_id', $request->kategori_id);
+        }
+
+        if ($request->barang_id) {
+            $barangs->where('barang_id', $request->barang_id);
         }
 
         return DataTables::of($barangs)
