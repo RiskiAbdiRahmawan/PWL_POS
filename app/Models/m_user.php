@@ -14,6 +14,13 @@ class m_user extends Model implements Authenticatable
     use AuthenticableTrait;
     use HasFactory;
 
+    public function getJWTIdentifier(){
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(){
+        return [];
+    }
     protected $table = 'm_users'; // Mendefinisikan nama tabel yang digunakan oleh model ini
     // public $timestamps = false;
     protected $primaryKey = 'user_id'; // Mendefinisikan primary key dari tabel yang digunakan
