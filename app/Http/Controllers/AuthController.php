@@ -81,6 +81,7 @@ class AuthController extends Controller
             'nama' => 'required',
             'username' => 'required|unique:m_users',
             'password' => 'required',
+            'level_id' => 'required',
         ]);
 
         // kalau gagal kembali ke halaman register dengan memunculkan pesan error
