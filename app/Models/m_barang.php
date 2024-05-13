@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 
 class m_barang extends Model
 {
@@ -15,7 +16,7 @@ class m_barang extends Model
     protected $primaryKey = 'barang_id';
 
     // @var array
-    protected $fillable = ['kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual'];
+    protected $fillable = ['kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual','image'];
     // protected $fillable = ['level_id', 'username', 'nama'];
 
     public function kategori(): BelongsTo
@@ -26,5 +27,11 @@ class m_barang extends Model
     public function stok(): HasMany
     {
         return $this->hasMany(t_stok::class, 'barang_id', 'barang_id');
+    }
+    protected function image(): CastsAttribute
+    {
+        return CastsAttribute::make(
+            get: fn ($image) => url('/storage/posts/' . $image),
+        );
     }
 }

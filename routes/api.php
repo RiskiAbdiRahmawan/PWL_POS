@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\TransaksiController;
+use App\Models\t_penjualan;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +52,8 @@ Route::post('barangs',[BarangController::class,'store']);
 Route::get('barangs/{barang}',[BarangController::class,'show']);
 Route::put('barangs/{barang}',[BarangController::class,'update']);
 Route::delete('barangs/{barang}',[BarangController::class,'destroy']);
+Route::get('penjualans', [TransaksiController::class, 'index']);
+Route::post('penjualans', [TransaksiController::class, 'store']);
+Route::get('penjualans/{penjualans}', [TransaksiController::class, 'show']);
+Route::put('penjualans/{penjualans}', [TransaksiController::class, 'update']);
+Route::delete('penjualans/{penjualans}', [TransaksiController::class, 'destroy']);
